@@ -1,24 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { BrowserRouter, Route } from "react-router-dom";
+import TrangChu from "./page/TrangChu/TrangChu";
+import DangKy from "./page/DangKy/DangKy";
+import DangNhap from "./page/DangNhap/DangNhap";
+import ChiTietPhim from "./page/ChiTietPhim/ChiTietPhim";
+import Header from "./components/Header/Header";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Header />
+      <Route path="/trangchu" component={TrangChu} />
+      <Route path="/dangky" component={DangKy} />
+      <Route path="/dangnhap" component={DangNhap} />
+      <Route path="/chitietphim" component={ChiTietPhim} />
+    </BrowserRouter>
   );
 }
 
