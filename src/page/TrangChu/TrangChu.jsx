@@ -1,6 +1,7 @@
 import Axios from "axios";
 import React, { useEffect } from "react";
 import { connect, useSelector, useDispatch } from "react-redux";
+import { NavLink } from "react-router-dom";
 import { getDataFilmAction } from "../../redux/actions/QuanLyPhimAction";
 import { DOMAIN } from "../../util/setting";
 
@@ -34,6 +35,13 @@ export default function TrangChu(props) {
             <div className="card-body">
               <h4 className="card-title">{phim.tenPhim}</h4>
               <p className="card-text">{phim.moTa}</p>
+
+              <NavLink
+                to={`/chitietphim/${phim.maPhim}`}
+                className="btn btn-danger"
+              >
+                Mua vé
+              </NavLink>
             </div>
           </div>
         </div>

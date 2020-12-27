@@ -8,7 +8,7 @@ export default function Header() {
         className="navbar navbar-expand-sm navbar-dark"
         style={{ backgroundColor: "#343a3f" }}
       >
-        <a className="navbar-brand" href="#">
+        <a className="navbar-brand" href="/">
           Movie
         </a>
         <button
