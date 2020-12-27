@@ -6,6 +6,7 @@ import { getDataFilmAction } from "../../redux/actions/QuanLyPhimAction";
 import { DOMAIN } from "../../util/setting";
 
 export default function TrangChu(props) {
+  console.log("propsRoute", props);
   // userSelector là hook reactderux cung cấp dùng để lấy state từ store về
   const mangPhim = useSelector((state) => state.QuanLyPhimReducer.mangPhim);
   //useDispatch là hook thay thế cho props.dispatch khi dùng redux connect

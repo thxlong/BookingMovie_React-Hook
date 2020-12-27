@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { dangNhapAction } from "../../redux/actions/QuanLyNguoiDungAction";
 
-export default function DangNhap() {
+export default function DangNhap(props) {
   // useState là thư viện thay thế this.state trong RE class component
   const [state, setState] = useState({
     taiKhoan: "",
@@ -32,6 +32,10 @@ export default function DangNhap() {
     // gọi API để xác thực đăng nhập
     dispatch(dangNhapAction(state));
 
+    // push: chuyển huống trang co thể backpage lại được
+    // props.history.push("trangchu");
+
+    // replace: Thay thế trang hiện tại bằng trang khác
   };
 
   return (
