@@ -1,5 +1,6 @@
 import Axios from "axios";
 import React, { useState, useEffect } from "react";
+import moment from "moment";
 
 export default function ChiTietPhim(props) {
   // tạo 1 state chứa thông tin chi tiết phim giá trị ban đầu là object rỗng
@@ -24,7 +25,7 @@ export default function ChiTietPhim(props) {
   return (
     <div className="container">
       <div className="row">
-        <div className="col-6">
+        <div className="col-4">
           <img
             style={{ width: "300px", height: "600px" }}
             src={chiTietPhim.hinhAnh}
@@ -32,7 +33,7 @@ export default function ChiTietPhim(props) {
           />
         </div>
 
-        <div className="col-6">
+        <div className="col-8">
           <table className="table">
             <tbody className="text-white">
               <tr>
@@ -52,36 +53,79 @@ export default function ChiTietPhim(props) {
         <div className="col-12 text-white text-center bg-warning">
           <h2>Thông tin lịch chiếu</h2>
         </div>
+      </div>
 
-        <div className="row">
-          <div
-            className="nav flex-column nav-pills col-4"
-            id="v-pills-tab"
-            role="tablist"
-            aria-orientation="vertical"
-          >
-            {chiTietPhim.heThongRapChieu?.map((heThongRap, index) => {
-              return (
-                <a
-                  key={index}
-                  className="nav-link"
-                  href={`#${heThongRap.tenHeThongRap}`}
-                  id={`v-pills-${heThongRap.tenHeThongRap}`}
-                >
-                  {heThongRap.tenHeThongRap}
-                </a>
-              );
-            })}
-          </div>
+      <div className="row text-white">
+        <div
+          className="nav flex-column nav-pills col-4"
+          id="v-pills-tab"
+          role="tablist"
+          aria-orientation="vertical"
+        >
+          {chiTietPhim.heThongRapChieu?.map((heThongRap, index) => {
+            const activeClass = index === 0 ? "active" : "";
 
-          <div
-            className="tab-content col-8 text-warning"
-            id="v-pills-tabContent"
-          >
-            {chiTietPhim.heThongRapChieu?.map((heThongRap, index) => {
-              return;
-            })}
-          </div>
+            return (
+              <a
+                className={`nav-link ${activeClass}`}
+                id={`v-pills-${heThongRap.maHeThongRap}-tab`}
+                data-toggle="pill"
+                href={`#v-pills-${heThongRap.maHeThongRap}`}
+                role="tab"
+                aria-controls={`v-pills-${heThongRap.maHeThongRap}`}
+                aria-selected="true"
+                key={index}
+              >
+                <img
+                  className="mr-2"
+                  src={heThongRap.logo}
+                  width="50"
+                  height="50"
+                  alt={heThongRap.logo}
+                />
+                {heThongRap.tenHeThongRap}
+              </a>
+            );
+          })}
+        </div>
+
+        <div className="tab-content col-8 text-warning" id="v-pills-tabContent">
+          {chiTietPhim.heThongRapChieu?.map((heThongRap, index) => {
+            const activeClass = index === 0 ? "active" : "";
+
+            return (
+              <div
+                key={index}
+                className={`tab-pane ${activeClass}`}
+                id={`v-pills-${heThongRap.maHeThongRap}`}
+                role="tabpanel"
+                aria-labelledby={`v-pills-${heThongRap.maHeThongRap}`}
+              >
+                {/* {heThongRap.tenHeThongRap} */}
+                {heThongRap.cumRapChieu?.map((cumRap, index) => {
+                  return (
+                    <div key={index} className="mt-3">
+                      <h3 className="text-warning">{cumRap.tenCumRap}</h3>
+                      <hr style={{ border: "solid 0.1px #e1e1e1d0" }} />
+                      <div className="row">
+                        {cumRap.lichChieuPhim
+                          ?.slice(0, 12)
+                          .map((lichChieu, index) => {
+                            return (
+                              <div key={index} className="col-3">
+                                {moment(lichChieu.ngayChieuGioChieu).format(
+                                  "hh:mmA"
+                                )}
+                              </div>
+                            );
+                          })}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
