@@ -1,6 +1,7 @@
 import Axios from "axios";
 import React, { useState, useEffect } from "react";
 import moment from "moment";
+import { NavLink } from "react-router-dom";
 
 export default function ChiTietPhim(props) {
   // tạo 1 state chứa thông tin chi tiết phim giá trị ban đầu là object rỗng
@@ -112,11 +113,15 @@ export default function ChiTietPhim(props) {
                           ?.slice(0, 12)
                           .map((lichChieu, index) => {
                             return (
-                              <div key={index} className="col-3">
+                              <NavLink
+                                to={`/datve/${lichChieu.maLichChieu}`}
+                                key={index}
+                                className="col-3"
+                              >
                                 {moment(lichChieu.ngayChieuGioChieu).format(
                                   "hh:mmA"
                                 )}
-                              </div>
+                              </NavLink>
                             );
                           })}
                       </div>

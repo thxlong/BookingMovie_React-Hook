@@ -19,3 +19,23 @@ export const getDataFilmAction = () => {
     });
   };
 };
+
+export const layThongTinPhongVeApiAction = (maLichChieu) => {
+  return async (dispatch) => {
+    try {
+      const result = await Axios({
+        url: `${DOMAIN}/api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${maLichChieu}`,
+        method: "GET",
+      });
+
+      dispatch({
+        type: "LAY_THONG_TIN_PHONG_VE",
+        thongTinPhongVe: result.data,
+      });
+    } catch (error) {
+      console.log(error.response?.data);
+
+      console.log(error);
+    }
+  };
+};
